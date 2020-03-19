@@ -18,7 +18,7 @@ public class ConcatanatedWords {
         Set<String> set = new HashSet<>();
 
         for (int i = 1; i < words.size(); i++) {
-            set.add(words.get(i -1));
+            set.add(words.get(i - 1));
             if (isConcat(words.get(i), set)) {
                 result.add(words.get(i));
             }
