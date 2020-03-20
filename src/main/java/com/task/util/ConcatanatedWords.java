@@ -14,15 +14,15 @@ public class ConcatanatedWords {
         concatenatedWords = findAllConcatenatedWordsInADict(words);
     }
 
-    public int getAmountOfAllConcatenatedWords(){
+    public int getAmountOfAllConcatenatedWords() {
         return concatenatedWords.size();
     }
 
-    public String getLongestConcatatedWord(){
+    public String getLongestConcatatedWord() {
         return concatenatedWords.get(concatenatedWords.size() - 1);
     }
 
-    public String getSecondLongestConcatatedWord(){
+    public String getSecondLongestConcatatedWord() {
         return concatenatedWords.get(concatenatedWords.size() - 2);
     }
 
