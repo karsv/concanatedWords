@@ -27,16 +27,11 @@ public class ConcatanatedWords {
     }
 
     private boolean isConcat(String s, Set<String> set) {
-        boolean[] posCheckes = new boolean[s.length() + 1];
-        posCheckes[0] = true;
-        for (int i = 1; i < s.length() + 1; i++) {
-            for (int j = 0; j < i; j++) {
-                if (set.contains(s.substring(j, i))) {
-                    posCheckes[i] = true;
-                    break;
-                }
+        for (int j = 0; j < s.length(); j++) {
+            if (set.contains(s.substring(j))) {
+                return true;
             }
         }
-        return posCheckes[s.length()];
+        return false;
     }
 }
