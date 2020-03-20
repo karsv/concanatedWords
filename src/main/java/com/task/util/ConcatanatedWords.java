@@ -8,7 +8,25 @@ import java.util.List;
 import java.util.Set;
 
 public class ConcatanatedWords {
-    public List<String> findAllConcatenatedWordsInADict(List<String> words) {
+    private List<String> concatenatedWords;
+
+    public ConcatanatedWords(List<String> words) {
+        concatenatedWords = findAllConcatenatedWordsInADict(words);
+    }
+
+    public int getAmountOfAllConcatenatedWords(){
+        return concatenatedWords.size();
+    }
+
+    public String getLongestConcatatedWord(){
+        return concatenatedWords.get(concatenatedWords.size() - 1);
+    }
+
+    public String getSecondLongestConcatatedWord(){
+        return concatenatedWords.get(concatenatedWords.size() - 2);
+    }
+
+    private List<String> findAllConcatenatedWordsInADict(List<String> words) {
         List<String> result = new ArrayList<>();
         if (words == null || words.size() == 0) {
             return result;
@@ -26,9 +44,9 @@ public class ConcatanatedWords {
         return result;
     }
 
-    private boolean isConcat(String s, Set<String> set) {
-        for (int j = 0; j < s.length(); j++) {
-            if (set.contains(s.substring(j))) {
+    private boolean isConcat(String word, Set<String> setOfWords) {
+        for (int j = 0; j < word.length(); j++) {
+            if (setOfWords.contains(word.substring(j))) {
                 return true;
             }
         }
