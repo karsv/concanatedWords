@@ -2,26 +2,26 @@ package com.task.model;
 
 import java.util.List;
 
-public class ConcWordsResult {
+public class WordsResult {
     private String firstLomgestConcWord;
     private String secondLomgestConcWord;
     private List<String> allConcatWords;
 
-    public ConcWordsResult(List<String> allConcatWords) {
+    public WordsResult(List<String> allConcatWords) {
         this.allConcatWords = allConcatWords;
         firstLomgestConcWord = allConcatWords.get(allConcatWords.size() - 1);
         secondLomgestConcWord = allConcatWords.get(allConcatWords.size() - 2);
     }
 
-    public int getQuantityOfConcatWords() {
+    public int getQuantityOfWords() {
         return allConcatWords.size();
     }
 
-    public String getFirstLomgestConcWord() {
+    public String getFirstLongestWord() {
         return firstLomgestConcWord;
     }
 
-    public String getSecondLomgestConcWord() {
+    public String getSecondLongestWord() {
         return secondLomgestConcWord;
     }
 
@@ -34,6 +34,6 @@ public class ConcWordsResult {
         return "The longest concatenated word is:" + firstLomgestConcWord + "\n"
                 + "The 2nd longest concatenated word is: " + secondLomgestConcWord + "\n"
                 + "The total count of all the concatenated words in the file is: "
-                + getQuantityOfConcatWords() + "\n";
+                + getQuantityOfWords() + "\n";
     }
 }
