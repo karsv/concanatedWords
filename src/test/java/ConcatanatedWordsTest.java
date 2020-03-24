@@ -1,3 +1,4 @@
+import com.task.model.ConcWordsResult;
 import com.task.util.ConcatanatedWords;
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,15 +18,16 @@ public class ConcatanatedWordsTest {
         list.add("rat");
         list.add("ratcatdogcat");
         list.add("dogcatsdog");
-        ConcatanatedWords concatanatedWords = new ConcatanatedWords(list);
+        ConcatanatedWords concatanatedWords = new ConcatanatedWords();
+        ConcWordsResult result = concatanatedWords.getResultOfConcatenatedWords(list);
         Assert.assertEquals("The longest concatenated word expected: ratcatdogcat" +
-                        "But is: " + concatanatedWords.getLongestConcatatedWord(),
-                "ratcatdogcat", concatanatedWords.getLongestConcatatedWord());
+                        "But is: " + result.getFirstLomgestConcWord(),
+                "ratcatdogcat", result.getFirstLomgestConcWord());
         Assert.assertEquals("The second longest concatenated word expected: catsdogcats" +
-                        "But is: " + concatanatedWords.getSecondLongestConcatatedWord(),
-                "catsdogcats", concatanatedWords.getSecondLongestConcatatedWord());
+                        "But is: " + result.getSecondLomgestConcWord(),
+                "catsdogcats", result.getSecondLomgestConcWord());
         Assert.assertEquals("The total count of all the concatenated words is: 3" +
-                        "But got: " + concatanatedWords.getAmountOfAllConcatenatedWords(),
-                3, concatanatedWords.getAmountOfAllConcatenatedWords());
+                        "But got: " + result.getQuantityOfConcatWords(),
+                3, result.getQuantityOfConcatWords());
     }
 }

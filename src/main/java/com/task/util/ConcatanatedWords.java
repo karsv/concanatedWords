@@ -1,5 +1,6 @@
 package com.task.util;
 
+import com.task.model.ConcWordsResult;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,48 +9,33 @@ import java.util.List;
 import java.util.Set;
 
 public class ConcatanatedWords {
-    private List<String> concatenatedWords;
-
-    public ConcatanatedWords(List<String> words) {
-        concatenatedWords = findAllConcatenatedWordsInADict(words);
-    }
-
-    public int getAmountOfAllConcatenatedWords() {
-        return concatenatedWords.size();
-    }
-
-    public String getLongestConcatatedWord() {
-        return concatenatedWords.get(concatenatedWords.size() - 1);
-    }
-
-    public String getSecondLongestConcatatedWord() {
-        return concatenatedWords.get(concatenatedWords.size() - 2);
-    }
-
-    private List<String> findAllConcatenatedWordsInADict(List<String> words) {
-        List<String> result = new ArrayList<>();
-        if (words == null || words.size() == 0) {
-            return result;
-        }
-
-        Collections.sort(words, Comparator.comparingInt(String::length));
-        Set<String> set = new HashSet<>();
-
-        for (int i = 1; i < words.size(); i++) {
-            set.add(words.get(i - 1));
-            if (isConcat(words.get(i), set)) {
-                result.add(words.get(i));
+    public ConcWordsResult getResultOfConcatenatedWords(List<String> words) {
+        Set<String> set = new HashSet<>(words);
+        List<String> list = new ArrayList<>();
+        for (String word : set) {
+            if (isConcat(word, set, 0, 1)) {
+                list.add(word);
             }
         }
+        Collections.sort(list, Comparator.comparingInt(String::length));
+        ConcWordsResult result = new ConcWordsResult(list);
         return result;
     }
 
-    private boolean isConcat(String word, Set<String> setOfWords) {
-        for (int j = 0; j < word.length(); j++) {
-            if (setOfWords.contains(word.substring(j))) {
+    private boolean isConcat(String word, Set<String> words, int start, int end) {
+        if ((start == 0 && end == word.length())
+                || end > word.length()) {
+            return false;
+        }
+
+        String temp = word.substring(start, end);
+        if (words.contains(temp)) {
+            if (end == word.length()) {
                 return true;
             }
+            return isConcat(word, words, end, end + 1)
+                    || isConcat(word, words, start, end + 1);
         }
-        return false;
+        return isConcat(word, words, start, end + 1);
     }
 }
